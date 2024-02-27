@@ -1,0 +1,71 @@
+{
+    "status": "ok",
+    "totalResults": 3464,
+    "articles": [
+        {
+            "source": {
+                "id": "engadget",
+                "name": "Engadget"
+            },
+            "author": "Will Shanklin",
+            "title": "Microsoft says Palworld is the biggest ever third-party Game Pass launch",
+            "description": "Palworld, the viral “Pokémon with guns” game that launched in Early Access to mixed reviews, has already sold 19 million copies. Developer Pocketpair says it’s sold 12 million copies on Steam and seven million on Xbox since its January 19 launch (after sellin…",
+            "url": "https://www.engadget.com/microsoft-says-palworld-is-the-biggest-ever-third-party-game-pass-launch-212835294.html",
+            "urlToImage": "https://s.yimg.com/ny/api/res/1.2/Ju0a37Rd9FpRMPlPY_AXkA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU-/https://s.yimg.com/os/creatr-uploaded-images/2024-01/40f2c100-c07d-11ee-bff7-172f2a85b127",
+            "publishedAt": "2024-01-31T21:28:35Z",
+            "content": "Palworld, the viral Pokémon with guns game that launched in Early Access to mixed reviews, has already sold 19 million copies. Developer Pocketpair says its sold 12 million copies on Steam and seven … [+2768 chars]"
+        },
+        {
+            "source": {
+                "id": "wired",
+                "name": "Wired"
+            },
+            "author": "Reece Rogers",
+            "title": "'Palworld': 6 Beginner Tips for Getting Started",
+            "description": "During the first few hours of \"Palworld,\" aka “Pokémon with guns,” focus on surviving each day, building your base, and eating your Pals.",
+            "url": "https://www.wired.com/story/palworld-tips/",
+            "urlToImage": "https://media.wired.com/photos/65ab0f66f3c358e7835caef5/191:100/w_1280,c_limit/Palworld-Pokemon-With-Guns-Culture-20230608_Palworld_Screenshot_02.jpg",
+            "publishedAt": "2024-01-22T19:50:40Z",
+            "content": "The first breakout video game of the year is also the most outrageous. Palworld, dubbed Pokémon with guns by the internet writ large, takes base elements of survival games, like Rust, and mixes them … [+3198 chars]"
+        },
+        {
+            "source": {
+                "id": "wired",
+                "name": "Wired"
+            },
+            "author": "Megan Farokhmanesh",
+            "title": "'Palworld': How 'Pokémon With Guns' Became an Overnight Hit",
+            "description": "Pocket Pair’s \"Palworld\" has ridden a wave of internet-fueled fascination to 5 million games sold and thousands of Twitch streams.",
+            "url": "https://www.wired.com/story/palworld-pokemon-with-guns-steam-success/",
+            "urlToImage": "https://media.wired.com/photos/65aecddf22aa647640de5c71/191:100/w_1280,c_limit/Pokemon-With-Guns-Culture-VS_MAMMOREST_Gun.jpg",
+            "publishedAt": "2024-01-22T23:27:24Z",
+            "content": "In the grass ahead lurks a cotton-ball puff of a creature with stubby appendages, round, yellow eyes, and a macaroni-noodle smile. Appropriately named Lamball, it is one of many island creatures that… [+2818 chars]"
+        },
+        {
+            "source": {
+                "id": "the-verge",
+                "name": "The Verge"
+            },
+            "author": "David Pierce",
+            "title": "A star creator’s go-to travel gear",
+            "description": "Plus Masters of the Air, Palworld, Amie, the Macintosh, Apple Podcasts, and more in this edition of the Installer newsletter.",
+            "url": "https://www.theverge.com/24051717/masters-of-the-air-palworld-amie-ali-abdaal-psych-installer-newsletter",
+            "urlToImage": "https://cdn.vox-cdn.com/thumbor/rFvsC3zGAeRX2ue-hUBAY_r7cEc=/0x0:3000x2000/1200x628/filters:focal(1500x1000:1501x1001)/cdn.vox-cdn.com/uploads/chorus_asset/file/24828467/Installer_Site_Post_01.jpg",
+            "publishedAt": "2024-01-28T13:00:00Z",
+            "content": "A star creators go-to travel gear\r\nA star creators go-to travel gear\r\n / Plus, in this weeks Installer: a new WWII epic, the hottest game on the web, comfort TV shows, and much more.\r\nByDavid Pierce,… [+12580 chars]"
+        },
+        {
+            "source": {
+                "id": "the-verge",
+                "name": "The Verge"
+            },
+            "author": "Tom Warren",
+            "title": "Pokémon with guns? All the latest on viral gaming hit Palworld",
+            "description": "Called “Pokémon with guns” by some, multiplayer survival game Palworld has become a surprise viral hit after launching on Xbox and Steam.",
+            "url": "https://www.theverge.com/24048972/palworld-news-trailers",
+            "urlToImage": "https://cdn.vox-cdn.com/thumbor/ZhnxFG_f5MNzewRiVu4er2H4ylM=/0x0:1920x1080/1200x628/filters:focal(960x540:961x541)/cdn.vox-cdn.com/uploads/chorus_asset/file/25245633/ss_43ed640c916ec689981a74f0818e5b9c77204d1c.jpg",
+            "publishedAt": "2024-01-24T15:00:00Z",
+            "content": "<ul><li>Pin\r\nPINNEDIt seems like everyone on Earth is either talking about or playing Palworld. Indeed, in the three days since its early access launch on Steam on January 19th (and simultaneous rele… [+2794 chars]"
+        }
+    ]
+}
