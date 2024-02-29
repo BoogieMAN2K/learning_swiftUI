@@ -8,6 +8,7 @@ import SwiftUI
 
 class RecentNews: ObservableObject {
     var newsList: [ArticleItem] = []
+    var ignoreCache: Bool = false
 }
 
 struct RecentNewsEnvironmentKey: EnvironmentKey {

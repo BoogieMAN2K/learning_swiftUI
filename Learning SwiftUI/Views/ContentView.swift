@@ -16,6 +16,9 @@ struct ContentView: View {
             NewsBySourcesView().tabItem {
                 Label("By sources", systemImage: "list.dash")
             }
+            SettingsView().tabItem {
+                Label("Settings", systemImage: "gearshape")
+            }
         }
         .environmentObject(RecentNews())
     }

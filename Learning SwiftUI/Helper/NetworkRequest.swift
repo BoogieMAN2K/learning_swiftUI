@@ -11,32 +11,32 @@ import Combine
 class NetworkRequest {
     static let instance = NetworkRequest()
     private let imageCache = URLCache.shared
-    private let session: URLSession
-    private let defaultURL = "https://newsapi.org/v2/top-headlines?language=en&apiKey=e9e7be2679554d3a80ce999c98ec41c7"
+    private var session = URLSession(configuration: URLSessionConfiguration.default)
+    private let baseURL: String = "https://newsapi.org/v2"
+    private let apiKey: String = "e9e7be2679554d3a80ce999c98ec41c7"
+    private var defaultURL: String = ""
 
-    private init() {
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .returnCacheDataElseLoad
-        session = URLSession(configuration: configuration)
-    }
-
-    func getNews(searchTerm: String) -> AnyPublisher<News, Error> {
+    @MainActor
+    func getNews(searchTerm: String = "", ignoreCache: Bool = false) -> AnyPublisher<News, Error> {
         guard let url = makeURL(for: searchTerm) else {
-            return Fail(error: PalError.invalidURL).eraseToAnyPublisher()
+            return Fail(error: NewsError.invalidURL).eraseToAnyPublisher()
         }
 
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = ignoreCache ? .reloadIgnoringLocalAndRemoteCacheData : .reloadRevalidatingCacheData
+        session = URLSession(configuration: configuration)
         return session.dataTaskPublisher(for: url)
             .tryMap { data, response in
                 return try JSONDecoder().decode(News.self, from: data)
             }
-            .mapError { PalError.networkError(description: $0.localizedDescription) }
+            .mapError { NewsError.networkError(description: $0.localizedDescription) }
             .eraseToAnyPublisher()
     }
 
     @MainActor
     func getImage(from urlString: String) -> AnyPublisher<UIImage?, Error> {
         guard let url = URL(string: urlString) else {
-            return Fail(error: PalError.invalidURL).eraseToAnyPublisher()
+            return Fail(error: NewsError.invalidURL).eraseToAnyPublisher()
         }
 
         if let cachedResponse = imageCache.cachedResponse(for: URLRequest(url: url)),
@@ -49,21 +49,23 @@ class NetworkRequest {
         return session.dataTaskPublisher(for: url)
             .tryMap { data, _ in
                 guard let image = UIImage(data: data) else {
-                    throw PalError.invalidImageData
+                    throw NewsError.invalidImageData
                 }
                 let response = URLResponse(url: url, mimeType: "image/png", expectedContentLength: data.count, textEncodingName: nil)
                 let cachedResponse = CachedURLResponse(response: response, data: data)
                 self.imageCache.storeCachedResponse(cachedResponse, for: URLRequest(url: url))
                 return image
             }
-            .mapError { PalError.networkError(description: $0.localizedDescription) }
+            .mapError { NewsError.networkError(description: $0.localizedDescription) }
             .eraseToAnyPublisher()
     }
 
     private func makeURL(for searchTerm: String) -> URL? {
+        let language: String = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "en"
+        defaultURL = "\(baseURL)/top-headlines?language=\(language)&apiKey=\(apiKey)"
         var urlString = defaultURL
         if searchTerm.count > 3, let encodedSearchTerm = searchTerm.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
-            urlString = "https://newsapi.org/v2/everything?q=\(encodedSearchTerm)&language=en&apiKey=e9e7be2679554d3a80ce999c98ec41c7"
+            urlString = "\(baseURL)/everything?q=\(encodedSearchTerm)&language=\(language)&apiKey=\(apiKey)"
         }
         return URL(string: urlString)
     }
@@ -76,7 +78,7 @@ class NetworkRequest {
     }
 }
 
-enum PalError: Error {
+enum NewsError: Error {
     case invalidURL
     case invalidImageData
     case networkError(description: String)

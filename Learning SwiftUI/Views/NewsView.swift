@@ -33,8 +33,9 @@ struct NewsView: View {
                 )
             })
             .onAppear {
-                if !ProcessInfo.isOnPreview() {
-                    loadNews()
+                loadNews()
+                if recentNews.ignoreCache {
+                    recentNews.ignoreCache.toggle()
                 }
                 displayToolbar = true
             }
@@ -53,29 +54,26 @@ struct NewsView: View {
 
     @MainActor
     private func loadNews() {
-        Task {
-            networkRequest.getNews(searchTerm: searchText)
-                .sink { completion in
-                    if case let .failure(error) = completion {
-                        print("Failed to load news: \(error.localizedDescription)")
-                        isDisplayingError = true
-                    }
-                } receiveValue: { newsResponse in
-                    // Some articles are coming with the title '[Removed]' so we need to filter those.
-                    news = newsResponse.articles.filter { $0.title != "[Removed]" }.map {
-                        ArticleItem(title: $0.title ?? "",
-                                    date: formatStringToDate($0.publishedAt ?? ""),
-                                    summary: $0.description ?? "",
-                                    imageURL: $0.urlToImage ?? "",
-                                    newsURL: $0.url,
-                                    source: networkRequest.getDomain(from: $0.url ?? ""))
-                    }
-
-                    self.recentNews.newsList = news
-
+        networkRequest.getNews(searchTerm: searchText, ignoreCache: recentNews.ignoreCache)
+            .sink { completion in
+                if case let .failure(error) = completion {
+                    print("Failed to load news: \(error.localizedDescription)")
+                    isDisplayingError = true
                 }
-                .store(in: &cancellables)
-        }
+            } receiveValue: { newsResponse in
+                // Some articles are coming with the title '[Removed]' so we need to filter those.
+                news = newsResponse.articles.filter { $0.title != "[Removed]" }.map {
+                    ArticleItem(title: $0.title ?? "",
+                                date: formatStringToDate($0.publishedAt ?? ""),
+                                summary: $0.description ?? "",
+                                imageURL: $0.urlToImage ?? "",
+                                newsURL: $0.url,
+                                source: networkRequest.getDomain(from: $0.url ?? ""))
+                }
+
+                self.recentNews.newsList = news
+            }
+            .store(in: &cancellables)
     }
 }
 

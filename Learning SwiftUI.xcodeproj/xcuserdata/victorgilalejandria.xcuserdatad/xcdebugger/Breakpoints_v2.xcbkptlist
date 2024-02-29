@@ -3,4 +3,70 @@
    uuid = "6EA085B6-7730-482B-A55E-9C54A93DFC5B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BB66A48B-1F14-41D9-9783-C56E7D725CF8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Learning SwiftUI/Views/NewsBySourcesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "BB66A48B-1F14-41D9-9783-C56E7D725CF8 - 41a5ba0d2fd17c68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0 in Learning_SwiftUI.NewsBySourcesView.body.getter : some"
+                  moduleName = "Learning SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/victorgilalejandria/Projects/Learning%20SwiftUI/Learning%20SwiftUI/Views/NewsBySourcesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  uuid = "BB66A48B-1F14-41D9-9783-C56E7D725CF8 - 41a5ba0d2fd17c68"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 () -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarTitle(SwiftUI.LocalizedStringKey) -&gt; some&gt;&gt;.0 in Learning_SwiftUI.NewsBySourcesView.body.getter : some"
+                  moduleName = "Learning SwiftUI"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/victorgilalejandria/Projects/Learning%20SwiftUI/Learning%20SwiftUI/Views/NewsBySourcesView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "85">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "29F53E77-590C-4EB2-9EC2-13A0A1852C96"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Learning SwiftUI/Views/NewsBySourcesView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "loadNews()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
