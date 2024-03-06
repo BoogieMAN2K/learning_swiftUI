@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var useSystemDefault = UserDefaults.standard.value(forKey: "isSystemDefaultLanguage") as? Bool ?? true
+    @State private var useApplicationDefault = UserDefaults.standard.value(forKey: "isApplicationDefaultLanguage") as? Bool ?? true
     @State private var selectedLanguage: Language = Language(rawValue: UserDefaults.standard.string(forKey: "selectedLanguage") ?? "") ?? .english
     @Environment(\.recentNews) var recentNews
 
@@ -22,15 +22,16 @@ struct SettingsView: View {
     var body: some View {
         List {
             Section(header: Text("Language")) {
-                Toggle(isOn: $useSystemDefault) {
-                    Text("Use system default")
+                Toggle(isOn: $useApplicationDefault) {
+                    Text("Use application default")
                 }
-                .onChange(of: useSystemDefault) {
+                .onChange(of: useApplicationDefault) {
                     recentNews.ignoreCache = true
-                    UserDefaults.standard.setValue(useSystemDefault, forKey: "isSystemDefaultLanguage")
+                    UserDefaults.standard.setValue(useApplicationDefault, forKey: "isApplicationDefaultLanguage")
+                    UserDefaults.standard.setValue(Language.english.rawValue, forKey: "selectedLanguage")
                 }
 
-                if !useSystemDefault {
+                if !useApplicationDefault {
                     Picker("Language", selection: $selectedLanguage) {
                         Text("English").tag(Language.english)
                         Text("French").tag(Language.french)

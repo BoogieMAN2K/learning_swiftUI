@@ -15,46 +15,48 @@ struct NewsBySourcesView: View {
     @State private var displayToolbar: Bool = true
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.recentNews) var recentNews
+    @State private var selectedSection: String?
+    @State private var selectedNew: ArticleItem?
 
     var body: some View {
-        NavigationStack {
-            List(news) { _ in
-                ForEach(loadSections(articles: news).sorted(), id: \.self) { section in
-                    Section(header: Text(section)) {
-                        let newsForSection = recentNews.newsList.filter { $0.newsURL?.contains(section) ?? false }
-                        ForEach(newsForSection) { newsArticle in
-                            NavigationLink(destination: WebView(url: newsArticle.newsURL ?? "").navigationBarTitleDisplayMode(.inline)) {
-                                NewsItemView(item: newsArticle)
-                                    .ignoresSafeArea()
-                            }
-                        }
-                    }
-                }
+        NavigationSplitView {
+            List(loadSections(articles: news), selection: $selectedSection) {
+                NavigationLink($0.title ?? "", value: $0.title ?? "")
             }
-            .onAppear {
-                loadNews()
-                if recentNews.ignoreCache {
-                    recentNews.ignoreCache.toggle()
-                }
+            .navigationTitle("Sources")
+        } content: {
+            List(sectionNews(), selection: $selectedNew) {
+                NavigationLink($0.title ?? "", value: $0)
             }
-            .navigationBarTitle("Sorted by Sources")
+        } detail: {
+            WebView(url: newsURLString())
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    print("News URL: \(newsURLString())")
+                }
         }
-        .alert(isPresented: $isDisplayingError, content: {
-            Alert(
-                title: Text("Alert"),
-                message: Text("Failed to load news."),
-                dismissButton: .default(Text("OK"))
-            )
-        })
-        .listStyle(.grouped)
-        .toolbar(displayToolbar ? .visible : .hidden)
+        .onAppear {
+            loadNews()
+            if recentNews.ignoreCache {
+                recentNews.ignoreCache.toggle()
+            }
+        }
     }
 
     @MainActor
-    private func loadSections(articles: [ArticleItem]) -> Set<String> {
-        var newsSections = Set<String>()
+    private func sectionNews() -> [ArticleItem] {
+        news.filter { $0.newsURL?.contains(selectedSection ?? "") ?? false }
+    }
+
+    private func newsURLString() -> String {
+        selectedNew?.newsURL ?? ""
+    }
+
+    @MainActor
+    private func loadSections(articles: [ArticleItem]) -> [ArticleSection] {
+        var newsSections: [ArticleSection] = []
         articles.forEach { article in
-            newsSections.insert(article.source ?? "")
+            newsSections.append(ArticleSection(title: article.source))
         }
 
         return newsSections

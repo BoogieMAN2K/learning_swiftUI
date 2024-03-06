@@ -18,6 +18,8 @@ struct WebView: UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         guard let localURL = URL(string: url) else {
+            webView.load(URLRequest(url: URL(string: "https://www.google.com")!))
+            webView.navigationDelegate = context.coordinator
             return webView
         }
         webView.load(URLRequest(url: localURL))

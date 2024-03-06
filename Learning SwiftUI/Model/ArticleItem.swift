@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct ArticleItem: Identifiable {
+struct ArticleItem: Identifiable, Hashable {
     let id: UUID = UUID()
     var title: String?
     var date: Date?
